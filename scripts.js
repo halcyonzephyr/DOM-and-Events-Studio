@@ -1,19 +1,24 @@
 // Write your JavaScript code here.
 // Remember to pay attention to page loading!
 window.addEventListener("DOMContentLoaded", (event) => {
-    let takeoff = document.getElementById("takeoff");
-    let landButton = document.getElementById("landing");
-    let missionAbort = document.getElementById("missionAbort");
-    let flightStatus = document.getElementById("flightStatus");
-    let shuttleBackground = document.getElementById("shuttleBackground");
-    let spaceShuttleHeight = document.getElementById("spaceShuttleHeight");
+    const rocket = document.getElementById("rocket");
+    const takeoff = document.getElementById("takeoff");
+    const landButton = document.getElementById("landing");
+    const missionAbort = document.getElementById("missionAbort");
+    const flightStatus = document.getElementById("flightStatus");
+    const shuttleBackground = document.getElementById("shuttleBackground");
+    let height = 0;
+    const upButton = document.getElementById("upControl");
+    const downButton = document.getElementById("downControl");
+    const leftButton = document.getElementById("leftControl");
+    const rightButton = document.getElementById("rightControl");
 
     takeoff.addEventListener("click", (event) => {
         const flightConfirmation = window.confirm("Confirm that the shuttle is ready for takeoff.");
         if (flightConfirmation) {
             flightStatus.innerText = "Shuttle in flight!";
             shuttleBackground.style.backgroundColor = "blue";
-            spaceShuttleHeight.innerText = parseInt(spaceShuttleHeight.innerText) + 10000;
+            spaceShuttleHeight.innerText = height + 10000;
         }
     });
 
@@ -31,5 +36,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
             shuttleBackground.style.backgroundColor = "green";
             spaceShuttleHeight.innerText = 0;
         }
+    });
+
+    upButton.addEventListener("click", (event) => {
+        height += 1000;
+        rocket.style.bottom = `${height/100}px`;
     })
+
+    downButton.addEventListener("click", (event) => {
+        height -= 1000;
+        rocket.style.bottom = `${height/100}px`;
+    })
+
+    leftButton.addEventListener("click", (event) => {
+        rocket.style.left = "-20px";
+    })
+
+    rightButton.addEventListener("click", (event) => {
+        rocket.style.right = "20px";
+    })
+
 });
